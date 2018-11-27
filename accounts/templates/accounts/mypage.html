@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <style>
+        img {
+            border-radius: 50%;
+        }
+    </style>
+    
+    <h4>{{user.last_name}}{{user.first_name}}'s Page <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" alt="Profile Picture :)" height="42" width="42"></h4>
+    <p>나이: </p>
+    <p>직업: </p>
+   
+    
+{% endblock %}

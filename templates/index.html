@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<!-- Section: home video -->
+<section id="intro" class="home-video text-light">
+		<div class="home-video-wrapper">
+
+		<div class="homevideo-container">
+           <div id="P1" class="bg-player" style="display:block; margin: auto; background: rgba(0,0,0,0.5)" data-property="{videoURL:'http://youtu.be/mroiVdC7H10',containment:'.homevideo-container', quality: 'hd720', showControls: false, autoPlay:true, mute:true, startAt:0, opacity:1}"></div>
+		</div>
+		<div class="overlay">
+			<div class="text-center video-caption">
+				<div class="wow bounceInDown" data-wow-offset="0" data-wow-delay="1.6s">
+					<h1 class="big-heading font-light">
+					    <span id="js-rotating">
+    					    간만에 조깅하러 나감 &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt;  길에서 똥 밟음, 
+    					    지각함  &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt;  신호등 많이 걸림, 
+    					    특정 색 속옷 입음  &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt;  경기에서 이김 ,
+    					    버스 안와서 택시탐  &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt;  버스옴, 
+    					    물건 잃어버려서 새로 구매함 &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt; 물건 찾음,
+    					    애인과 궁합봄 &lt;i class="fas fa-long-arrow-alt-right"&gt;&lt;/i&gt; 애인과 헤어짐,
+    					    
+					    </span>
+					</h1>
+				</div>
+				<div class="wow bounceInUp" data-wow-offset="0" data-wow-delay="1s">
+					<div class="margintop-30">
+						<a href="{% url 'jinxjinx:create' %}" class="btn btn-skin" id="btn-scroll">ready to tell me?</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+    </section>
+    <!-- /Section: intro -->
+    
+{%endblock%}

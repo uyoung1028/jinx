@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{%block body%}
+{%for sentence in sentence_list%}
+    <p>{{sentence.sen_reason}} + {{sentence.sen_result}}</p>
+    
+{%endfor%}
+{%endblock%}

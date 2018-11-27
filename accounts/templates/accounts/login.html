@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+{% block body %}
+
+    
+    <!-- LOGIN LOGOUT -->
+    {% if user.is_authenticated %}
+        <h1>{{user.last_name}}{{user.first_name}}</h1>
+        <h1>{{user.link}}</h1>
+        <a href="{%url 'accounts:logout'%}">LOG OUT</a>
+    {% else %}
+        <form method='post'>
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="Submit"/>
+        </form>
+        {% providers_media_js %}
+        <a style="background-color:#3b5998" class="btn btn-primary" href="{% provider_login_url "facebook" method="js_sdk" %}">
+            <i class="fab fa-facebook-square"></i>
+            Facebook Connect
+        </a>
+    
+        <!--<a href="{%url 'accounts:login'%}">LOG IN</a>-->
+    {% endif %}
+    <!-- /LOGIN LOGOUT -->
+    
+    
+    
+    
+
+{% endblock %}

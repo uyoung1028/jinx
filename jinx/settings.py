@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'jinxjinx',
     'accounts',
     
+    'import_export',
 ]
 
 SITE_ID = 1

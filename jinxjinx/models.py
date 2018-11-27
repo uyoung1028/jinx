@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Jinx(models.Model):
+    
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=100)
     
@@ -9,11 +10,13 @@ class Jinx(models.Model):
         return self.title
         
 class Data(models.Model):
+    c = models.CharField(max_length=50, default='')
     n = models.CharField(max_length=50)
     v = models.CharField(max_length=50)
     
     def __str__(self):
-        return self.n + ' / ' + self.v
+        return '[' + self.c + '] ' + self.n + ' ' + self.v
+        
     
 class Sentence(models.Model):
     sen_reason = models.ForeignKey(Data,on_delete=models.CASCADE,related_name='reason')

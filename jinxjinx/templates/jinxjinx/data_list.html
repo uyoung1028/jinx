@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<h1 id="category"></h1>
+<h1 id="noun"></h1>
+<h1 id="verb"></h1>
+
+<select id='category_select' name="category" onchange="changeCate()">
+    {%for data in data_list_unique%}
+        <option class="category" value="{{data.c}}" selected="selected">{{data.c}}</option>
+    {%endfor%}
+</select>
+
+
+<select id='noun_select' name="noun" onchange="setEmail2(this.value)">
+    {%for data in data_list%}
+        <option class="noun" value="{{data.n}}" selected="selected">{{data.n}}</option>
+    {%endfor%}
+</select>
+
+<select id='verb_select' name="verb" onchange="setEmail2(this.value)">
+    {%for data in data_list%}
+        <option class='verb' value="{{data.v}}" selected="selected">{{data.v}}</option>
+    {%endfor%}
+</select>
+
+<script type="text/javascript">
+    function changeCate(){
+        var select_category = $('#category_select').val()
+        $('#category').text(select_category)
+    }
+    
+</script>
+{%endblock%}

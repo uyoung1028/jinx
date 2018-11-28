@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+{% load custom %}
+{%block body%}
+
+<h1 id="category"></h1>
+<h1 id="noun"></h1>
+<h1 id="verb"></h1>
+
+<select id='category_select' name="category" onchange="changeCate()">
+    {%for category in category_list%}
+        <option class="category" value="{{category.name}}" selected="selected">{{category.name}}</option>
+    {%endfor%}
+</select>
+
+<select id='noun_select' name="noun" onchange="setEmail2(this.value)">
+    
+</select>
+
+<select id='verb_select' name="verb" onchange="setEmail2(this.value)">
+    {%for data in data_list%}
+        <option class='verb' value="{{data.v}}" selected="안 좋음">{{data.v}}</option>
+    {%endfor%}
+</select>
+
+<script type="text/javascript">
+    const changeCate = function (){
+        var select_category = $('#category_select').val()
+        $('#category').text(select_category)
+        
+        $.ajax({
+          type: "POST",
+          url: "{% url 'jinxjinx:category_noun'%}",
+          data: {'name':select_category, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+          dataType: 'json',
+          
+          success: function(data){
+            $('.noun').remove()
+            var noun_list = ``
+            data.noun_list.forEach(function(v){
+                noun_list+= `
+            <option class="noun" value="${v}" selected="selected">${v}</option>
+            `               
+            })
+            $('#noun_select').append(noun_list)
+            // console.log(data.noun_list)
+          },
+          error: function(){
+            
+          }
+          
+        })
+    }
+    
+</script>
+{%endblock%}

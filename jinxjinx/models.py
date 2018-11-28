@@ -24,3 +24,21 @@ class Sentence(models.Model):
     
     def __str__(self):
         return self.sen_reason.__str__() + ' + ' + self.sen_result.__str__()
+        
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+        
+class Noun(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+    
+class Verb(models.Model):
+    noun = models.ForeignKey(Noun,on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+    

@@ -7,20 +7,28 @@
 <h1 id="verb"></h1>
 
 <select id='category_select' name="category" onchange="changeCate()">
+    <option class="category_start" selected="selected">카테고리</option>
     {%for category in category_list%}
-        <option class="category" value="{{category.name}}" selected="selected">{{category.name}}</option>
+        <option class="category" value="{{category.name}}">{{category.name}}</option>
     {%endfor%}
 </select>
 
-<select id='noun_select' name="noun" onchange="setEmail2(this.value)">
-    
+<select id='noun_select' name="noun" onchange="changeNoun()">
+    <option class="noun_start" selected="selected">명사</option>
+     {%for noun in noun_list%}
+        <option class="noun" value="{{noun.name}}">{{noun.name}}</option>
+    {%endfor%}   
 </select>
 
 <select id='verb_select' name="verb" onchange="setEmail2(this.value)">
-    {%for data in data_list%}
-        <option class='verb' value="{{data.v}}" selected="안 좋음">{{data.v}}</option>
+    <option class="verb_start" selected="selected">동사</option>
+    {%for verb in verb_list%}
+        <option class='verb' value="{{verb.v}}">{{data.v}}</option>
     {%endfor%}
 </select>
+
+<button class="btn btn-warning" onclick="reason()">원인</button>
+<button class="btn btn-danger" >결과</button>
 
 <script type="text/javascript">
     const changeCate = function (){
@@ -35,10 +43,12 @@
           
           success: function(data){
             $('.noun').remove()
+            $('.verb').remove()
+
             var noun_list = ``
             data.noun_list.forEach(function(v){
                 noun_list+= `
-            <option class="noun" value="${v}" selected="selected">${v}</option>
+            <option class="noun" value="${v}" >${v}</option>
             `               
             })
             $('#noun_select').append(noun_list)
@@ -49,6 +59,49 @@
           }
           
         })
+    }
+    
+    const changeNoun = function (){
+        var select_noun = $('#noun_select').val()
+        $('#noun').text(select_noun)
+        
+        $.ajax({
+          type: "POST",
+          url: "{% url 'jinxjinx:noun_verb'%}",
+          data: {'name':select_noun, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+          dataType: 'json',
+          
+          success: function(data){
+            $('.verb').remove()
+            var verb_list = ``
+            data.verb_list.forEach(function(v){
+                verb_list+= `
+            <option class="verb" value="${v}" >${v}</option>
+            `               
+            })
+            $('#verb_select').append(verb_list)
+            // console.log(data.verb_list)
+          },
+          error: function(){
+            
+          }
+          
+        })
+    }
+    
+    <form action="/action_page.php">
+<select name="cars">
+  <option value="volvo">Volvo XC90</option>
+  <option value="saab">Saab 95</option>
+  <option value="mercedes">Mercedes SLK</option>
+  <option value="audi">Audi TT</option>
+</select>
+<input type="submit" value="Submit">
+</form>
+    
+    function reason(){
+        var val = $('#category_select').val()
+        alert(val)
     }
     
 </script>

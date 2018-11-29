@@ -48,7 +48,7 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="active"><a href="{% url 'home' %}">Home</a></li>
                                     <li><a href="{% url 'jinxjinx:create' %}">Tell Me</a></li>
-                                    <li><a href="{% url 'jinxjinx:list' %}">Jinx Book</a></li>
+                                    <li><a href="{% url 'jinxjinx:list' %}">Jinx Box</a></li>
                                     <li><a href="#contact">Share</a></li>
                                     <li class="dropdown nav-toggle">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -75,8 +75,10 @@
         </nav>
     </div>
     <!-- /Navigation -->
-
-    {%block body%}{% endblock %}
+    <div class="container">
+        
+        {%block body%}{% endblock %}
+    </div>
     
     <!-- Footer -->
     <footer>

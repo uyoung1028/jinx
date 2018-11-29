@@ -7,7 +7,6 @@ from django.http import HttpResponse
 
 class PostList(ListView):
     model = Jinx
-    
 
 class PostCreate(CreateView):
     model = Jinx
@@ -30,7 +29,6 @@ class CategoryList(ListView):
     
 def category_noun(request):
     name = request.POST.get('name')
-    # print(name)
     if request.is_ajax():
         catagory = Category.objects.get(name=name)
         data = {'noun_list':[]}
@@ -45,14 +43,11 @@ class NounList(ListView):
     
 def noun_verb(request):
     name = request.POST.get('name')
-    # print(name)
     if request.is_ajax():
         noun = Noun.objects.get(name=name)
-        print(noun)
-        data = {'verb_list':[]}
+        data2 = {'verb_list':[]}
         for verb in noun.verb_set.all():
-            data['verb_list'].append(verb.name)
-            # print(data)
+            data['verb_list'].append(noun.name)
         return HttpResponse(json.dumps(data), content_type="application/json")
     else:
-        return redirect(resolve_url('home') )
+        return redirect( resolve_url('home') )

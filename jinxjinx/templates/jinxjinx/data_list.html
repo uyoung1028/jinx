@@ -2,34 +2,93 @@
 
 {%block body%}
 
-<h1 id="category"></h1>
-<h1 id="noun"></h1>
-<h1 id="verb"></h1>
+<!--<h1 id="category"></h1>-->
+<!--<h1 id="noun"></h1>-->
+<!--<h1 id="verb"></h1>-->
 
+<input type="text" name="noun_sel" value="아래 선택" size="10" class="input" id="cause_noun_check" readonly/> 
+<input type="text" name="verb_sel" value="아래 선택" size="10" class="input" id="cause_verb_check" readonly/> ->
+<input type="text" name="noun_sel" value="아래 선택" size="10" class="input" id="effect_noun_check" readonly/> 
+<input type="text" name="verb_sel" value="아래 선택" size="10" class="input" id="effect_verb_check" readonly/> 
+
+<br />
+<br />
+<br />
+
+<h5>선택</h5>
 <select id='category_select' name="category" onchange="changeCate()">
     {%for data in data_list_unique%}
-        <option class="category" value="{{data.c}}" selected="selected">{{data.c}}</option>
+        <option class="category" value="{{data.c}}" >{{data.c}}</option>
     {%endfor%}
 </select>
 
-
-<select id='noun_select' name="noun" onchange="setEmail2(this.value)">
+<select id='noun_select' name="noun" onchange="changeNoun(this.value)">
     {%for data in data_list%}
         <option class="noun" value="{{data.n}}" selected="selected">{{data.n}}</option>
     {%endfor%}
+    <!--<input type="text" name="noun_sel" value="" size="10" class="input" id="noun_check" readonly/> -->
 </select>
 
-<select id='verb_select' name="verb" onchange="setEmail2(this.value)">
+<select id='verb_select' name="verb" onchange="changeVerb(this.value)">
     {%for data in data_list%}
-        <option class='verb' value="{{data.v}}" selected="selected">{{data.v}}</option>
+        <option class="verb" value="{{data.v}}" selected="selected">{{data.v}}</option>
     {%endfor%}
+    <!--<input type="text" name="verb_sel" value="" size="10" class="input" id="verb_check" readonly/> -->
 </select>
+
+<button class="btn btn-warning" onclick="cause_click()">원인</button>
+<button class="btn btn-danger" onclick="effect_click()">결과</button>
 
 <script type="text/javascript">
     function changeCate(){
         var select_category = $('#category_select').val()
         $('#category').text(select_category)
     }
+    function changeNoun(){
+        var select_noun = $('#noun_select').val()
+        $('#noun').text(select_noun)
+    }
     
+    var changeNoun = function(val){
+    // 	if(val == 'self'){
+    // 		$('input[name=noun_sel]').attr('readonly',false);
+    // 		$('input[name=noun_sel]').val('');
+    // 		$('input[name=noun_sel]').focus();
+    // 	}else {
+    // 		$('input[name=noun_sel]').attr('readonly',true);
+    // 		$('input[name=noun_sel]').val(val);
+    // 	}
+    }
+	
+	var changeVerb = function(val){
+    // 	if(val == 'self'){
+    // 		$('input[name=verb_sel]').attr('readonly',false);
+    // 		$('input[name=verb_sel]').val('');
+    // 		$('input[name=verb_sel]').focus();
+    // 	}else {
+    // 		$('input[name=verb_sel]').attr('readonly',true);
+    // 		$('input[name=verb_sel]').val(val);
+    // 	}
+
+    }
+    
+    function cause_click(){
+        
+        var cause_noun = $('#noun_select').val()
+        var cause_verb = $('#verb_select').val()
+        $('#cause_noun_check').val(cause_noun)
+        $('#cause_verb_check').val(cause_verb)
+        
+    }
+    function effect_click(){
+
+        var effect_noun = $('#noun_select').val()
+        var effect_verb = $('#verb_select').val()
+        $('#effect_noun_check').val(effect_noun)
+        $('#effect_verb_check').val(effect_verb)
+        
+    }
+
 </script>
+
 {%endblock%}

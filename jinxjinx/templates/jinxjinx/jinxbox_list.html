@@ -29,61 +29,60 @@ tr:nth-child(even) {
         <option class="sentence" value="{{sentence.id}}">{{sentence.name}}</option>
     {%endfor%}
 </select>
+<table style="width:100%">
+  <tr>
+    <th>번호</th>
+    <th>날짜</th> 
+    <th>날씨</th>
+    <th>기분</th>
+    <th>결과</th>    
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>date1</td> 
+    <td>cloudy</td>
+    <td>happy</td>
+    <td>N</td>    
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>date2</td> 
+    <td>sad</td>
+    <td>sad</td>
+    <td>Y</td>    
+  </tr>
+</table>
+
+{%endblock%}
 
 <!---------------------------정묵----------------------------------------------------------------------->
-<script type="text/javascript">
-    const changeSentence = function (){
-        var select_sentence = $('#sentence_select').val()
-        $('#sentence').text(select_sentence)
+// <script type="text/javascript">
+//     const changeSentence = function (){
+//         var select_sentence = $('#sentence_select').val()
+//         $('#sentence').text(select_sentence)
         
-        $.ajax({
-          type: "POST",
-          url: "{% url 'jinxjinx:category_noun'%}",
-          data: {'name':select_category, 'csrfmiddlewaretoken':'{{csrf_token}}'},
-          dataType: 'json',
+//         $.ajax({
+//           type: "POST",
+//           url: "{% url 'jinxjinx:category_noun'%}",
+//           data: {'name':select_category, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+//           dataType: 'json',
           
-          success: function(data){
-            $('.noun').remove()
-            $('.verb').remove()
+//           success: function(data){
+//             $('.noun').remove()
+//             $('.verb').remove()
 
-            var noun_list = ``
-            data.noun_list.forEach(function(v){
-                noun_list+= `
-            <option class="noun" value="${v}" >${v}</option>
-            `               
-            })
-            $('#noun_select').append(noun_list)
-            // console.log(data.noun_list)
-          },
-          error: function(){
+//             var noun_list = ``
+//             data.noun_list.forEach(function(v){
+//                 noun_list+= `
+//             <option class="noun" value="${v}" >${v}</option>
+//             `               
+//             })
+//             $('#noun_select').append(noun_list)
+//             // console.log(data.noun_list)
+//           },
+//           error: function(){
             
-          }
+//           }
           
-        })
-    }
-
-  <table style="width:100%">
-    <tr>
-      <th>번호</th>
-      <th>날짜</th> 
-      <th>날씨</th>
-      <th>기분</th>
-      <th>결과</th>    
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>date1</td> 
-      <td>cloudy</td>
-      <td>happy</td>
-      <td>N</td>    
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>date2</td> 
-      <td>sad</td>
-      <td>sad</td>
-      <td>Y</td>    
-    </tr>
-  </table>
-
-{% endblock %}
+//         })
+//     }

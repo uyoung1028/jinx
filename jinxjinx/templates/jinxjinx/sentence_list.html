@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 
 {%block body%}
-{%for sentence in sentence_list%}
-    <p>{{sentence.cause_noun}} {{sentence.cause_verb}} -> {{sentence.effect_noun}} {{sentence.effect_verb}}</p>
+{% comment %}
+<!--{%if my_sentence_list %}-->
+<!--    {%for sentence in my_sentence_list%}-->
+<!--        <p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{sentence.cause_noun}} {{sentence.cause_verb}} -> {{sentence.effect_noun}} {{sentence.effect_verb}}</p>-->
+        
+<!--    {%endfor%}-->
+<!--{%else%}-->
+<!--{%endif%}-->
+{% endcomment %}
+
+<h1>인기 징크스</h1>
+    {%for sentence in sentence_list%}
+        <p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;" >{{sentence.cause_noun}} {{sentence.cause_verb}} <i class="fas fa-long-arrow-alt-right"></i> {{sentence.effect_noun}} {{sentence.effect_verb}} / {{sentence.user.all.count}}</p>
+        
+    {%endfor%}
     
-{%endfor%}
+
 {%endblock%}

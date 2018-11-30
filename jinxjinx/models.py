@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
-
+from django.contrib.auth import get_user_model
+# from django_pandas.io import read_frame
+# from django_pandas.managers import DataFrameManager
+User = get_user_model()
 # Create your models here.
 class Jinx(models.Model):
     
@@ -20,6 +23,7 @@ class Data(models.Model):
         
     
 class Sentence(models.Model):
+    user = models.ManyToManyField(User,through='UserSentence')
     cause_noun = models.CharField(max_length=50, default='')
     cause_verb = models.CharField(max_length=50, default='')
     effect_noun = models.CharField(max_length=50, default='')
@@ -31,6 +35,11 @@ class Sentence(models.Model):
     
     def __str__(self):
         return self.cause_noun.__str__()+' '+ self.cause_verb.__str__()+ ' + ' + self.effect_noun.__str__() +' ' + self.cause_verb.__str__()
+class UserSentence(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    sentence = models.ForeignKey(Sentence,on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=0)
+
         
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -55,3 +64,10 @@ class Situation(models.Model):
     feeling = models.CharField(max_length=50)
     weather = models.CharField(max_length=50)
     
+
+
+# class DataAnalaysis(models.Model):
+    
+# qs = Sentence.objects.all()
+# df = read_frame(qs)
+# df = read_fram(qs, fieldnames=['cause_noun', 'cause_verb', 'effect_noun', 'effect_verb'])

@@ -1,0 +1,14 @@
+<!--조유영-->
+<!--cnt_cause_noun = Sentence.objects.values('cause_noun').order_by('cause_noun').annotate(count=Count('cause_noun'))-->
+<!--cnt_cause_verb = Sentence.objects.values('cause_verb').order_by('cause_verb').annotate(count=Count('cause_verb'))-->
+
+<!--cnt = Sentence.objects.values('cause_verb').order_by('cause_verb').annotate(count=Count('cause_verb'))-->
+
+
+<!--above_5 = Count('cause_verb', filter=Q(book__rating__gt=5))-->
+
+<!--pubs = Publisher.objects.annotate(below_5=below_5).annotate(above_5=above_5)-->
+
+<!--Sentence.objects.filter(Q(cause_noun="눈물")&Q(cause_verb="흘림")).count()                                                          -->
+
+<!--Sentence.objects.values('cause_noun', 'cause_verb').order_by().annotate(Count('cause_noun'), Count('cause_verb'))-->

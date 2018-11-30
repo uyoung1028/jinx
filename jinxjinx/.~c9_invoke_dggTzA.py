@@ -1,6 +1,6 @@
 from django.shortcuts import render, resolve_url, redirect
 from django.views.generic import ListView,CreateView,DetailView,UpdateView,DeleteView
-from .models import Jinx, Sentence, Data, Category, Noun, Situation, UserSentence
+from .models import Jinx, Sentence, Data, Category, Noun, Situation
 from django.contrib.auth.mixins import LoginRequiredMixin
 import json
 from django.http import HttpResponse
@@ -80,30 +80,15 @@ class SentenceCreate(LoginRequiredMixin, CreateView):
     fields = ['cause_noun', 'cause_verb', 'effect_noun', 'effect_verb',]
     
     def form_valid(self,form):
-        cause_noun = self.request.POST.get('cause_noun')
-        cause_verb = self.request.POST.get('cause_verb')
-        effect_noun = self.request.POST.get('effect_noun')
-        effect_verb = self.request.POST.get('effect_verb')
-        sentences = Sentence.objects.filter(Q(cause_noun=cause_noun)&Q(cause_verb=cause_verb)&Q(effect_noun=effect_noun)&Q(effect_verb=effect_verb))
-        already = sentences.exists()
-        # print(filter)
-        if already:
-            print("이미있음")
-            if UserSentence.objects.filter(Q(user=self.request.user)&Q(sentence=sentences[0])).exists():
-                print("사용자가 있는문장 등록")
-                # 사용자가 이미 등록해놓은 문장이 있으면 그 문장으로 가야됨
-                return redirect(resolve_url('home'))  # 나중에는 디테일페이지로
-            else:
-                #이미 등록해놓은 문장이 있으면 usersentence에 저장하고 그 문장으로 이동
-                usersentence = UserSentence.objects.create(user=self.request.user, sentence=sentences[0])
-                return redirect(resolve_url('home'))
-        else:
-            print("없음")
-            # self.object = form.save(commit=False)
-            # self.object.user = self.request.user
-            form.save()
-            UserSentence.objects.create(user=self.request.user, sentence=sentences[0])
-            return super().form_valid(form)
+        data = self.request.POST
+        cause_noun 
+        print(self.request.POST.get('cause_noun'))
+        # if Sentence.objects.filter(cause_noun=data.get('cause_noun'))
+        # self.object = form.save(commit=False)
+        # self.object.user = self.request.user
+        # self.object.save()
+        
+        return super().form_valid(form)
     
     
     

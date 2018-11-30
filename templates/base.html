@@ -17,11 +17,16 @@
     <link href="{% static 'css/animate.css' %}" rel="stylesheet" />
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'color/default.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:700|Noto+Sans+KR" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
-<body>
-
+<body style="background-color:#F2F2F2;">
+    
     <!-- Navigation -->
     <div id="navigation">
         <nav class="navbar navbar-custom" role="navigation">
@@ -30,7 +35,7 @@
                     <div class="col-md-2 mob-logo">
                         <div class="row">
                             <div class="site-logo">
-                                <a href="index.html"><img src="img/logo-dark.png" alt="" /></a>
+                                <a href="index.html"><img style="height:30%;width:30%" src="{%static 'img/logo_jinx2.png'%}" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -46,10 +51,10 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="menu">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                                    <li><a href="{% url 'jinxjinx:create' %}">Tell Me</a></li>
-                                    <li><a href="{% url 'jinxjinx:list' %}">Jinx Box</a></li>
-                                    <li><a href="#contact">Share</a></li>
+                                    <li class="active"><a href="{% url 'home' %}" style="font-family: 'Noto Sans KR', sans-serif;">Home</a></li>
+                                    <li><a href="{% url 'jinxjinx:category' %}" style="font-family: 'Noto Sans KR', sans-serif;">Tell Me</a></li>
+                                    <li><a href="{% url 'jinxjinx:list' %}" style="font-family: 'Noto Sans KR', sans-serif;">Jinx Box</a></li>
+                                    <li><a href="#contact" style="font-family: 'Noto Sans KR', sans-serif;">Share</a></li>
                                     <li class="dropdown nav-toggle">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <i class="fas fa-user-circle fa-2x"></i>
@@ -57,10 +62,10 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             {% if user.is_authenticated %}
-                                                <li><a class="external" href="{%url 'accounts:mypage'%}">My Page</a></li>
-                                                <li><a class="external" href="{%url 'accounts:logout'%}">Log Out</a></li>
+                                                <li><a class="external" href="{%url 'accounts:mypage'%}" style="font-family: 'Noto Sans KR', sans-serif;">My Page</a></li>
+                                                <li><a class="external" href="{%url 'accounts:logout'%}" style="font-family: 'Noto Sans KR', sans-serif;">Log Out</a></li>
                                             {% else %}
-                                                <li><a class="external" href="{%url 'accounts:login'%}">Log In</a></li>
+                                                <li><a class="external" href="{%url 'accounts:login'%}" style="font-family: 'Noto Sans KR', sans-serif;">Log In</a></li>
                                             {% endif %}
                                         </ul>
                                     </li>
@@ -75,10 +80,11 @@
         </nav>
     </div>
     <!-- /Navigation -->
-    <div class="container">
+    
+    <!--<div class="container" >-->
         
         {%block body%}{% endblock %}
-    </div>
+    <!--</div>-->
     
     <!-- Footer -->
     <footer>

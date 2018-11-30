@@ -2,33 +2,95 @@
 {% load custom %}
 {%block body%}
 
-<h1 id="category"></h1>
-<h1 id="noun"></h1>
-<h1 id="verb"></h1>
+	<!-- Section: services -->
+    <section id="service" class="home-section color-dark bg-white">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
+    					<div class="section-heading text-center">
+        					<h2 class="h-bold">TELL ME</h2>
+        					<div class="divider-header"></div>
+        					<p>Tell me 그대의 징크스! 아래 선택지를 통해 징크스 문장을 만들어보셔요! </p>
+    					</div>
+					</div>
+				</div>
+			</div>
 
-<select id='category_select' name="category" onchange="changeCate()">
-    <option class="category_start" selected="selected">카테고리</option>
-    {%for category in category_list%}
-        <option class="category" value="{{category.name}}">{{category.name}}</option>
-    {%endfor%}
-</select>
+		</div>
 
-<select id='noun_select' name="noun" onchange="changeNoun()">
-    <option class="noun_start" selected="selected">명사</option>
-     {%for noun in noun_list%}
-        <option class="noun" value="{{noun.name}}">{{noun.name}}</option>
-    {%endfor%}   
-</select>
+		<!--<div class="text-center">-->
+		    <div class="container">
+                <div class="row">
+                    <!--<div class="col-md-8">-->
+                    <div class="col-md-8 offset-md-3">
+        				<!--<div class="wow fadeInLeft" data-wow-delay="0.2s">-->
+                        <div class="service-box"style="background-color:#C0C0C0;">
+        					<!--<div class="service-icon">-->
+        						<!--<span class="pe-7s-monitor pe-5x"></span> -->
+        						<form action="{% url 'jinxjinx:sentence_create' %}" method='post'>
+        						    {% csrf_token %}
+        						    <p id="sentence_cause">hihi</p>
+        						    <p id="sentence_effect"></p>
+        						    <input type="hidden" name="cause_noun" value="아래 선택" size="10" class="input" id="cause_noun_check" readonly/> 
+                                    <input type="hidden" name="cause_verb" value="아래 선택" size="10" class="input" id="cause_verb_check" readonly/>
+                                    <input type="hidden" name="effect_noun" value="아래 선택" size="10" class="input" id="effect_noun_check" readonly/> 
+                                    <input type="hidden" name="effect_verb" value="아래 선택" size="10" class="input" id="effect_verb_check" readonly/> 
+                                    <input class="btn btn-primary" type="submit" value="저장"/>
+                                </form>
+        				</div>
+        			<!--<div class="service-desc">						-->
+        		    </div>
+                </div>
+            </div>
+            
+            
+            <h5>선택</h5>
+            
+            <select id='category_select' name="category" onchange="changeCate()">
+                <option class="category_start" selected="selected">카테고리</option>
+                {%for category in category_list%}
+                    <option class="category" value="{{category.name}}">{{category.name}}</option>
+                {%endfor%}
+            </select>
+            
+            <select id='noun_select' name="noun" onchange="changeNoun(this.value)">
+                <option class="noun_start" selected="selected">명사</option>
+                 {%for noun in noun_list%}
+                    <option class="noun" value="{{noun.name}}">{{noun.name}}</option>
+                {%endfor%}   
+            </select>
+            
+            <select id='verb_select' name="verb" onchange="changeVerb(this.value)">
+                <option class="verb_start" selected="selected">동사</option>
+              
+            </select>
+            
+            <button class="btn btn-warning" onclick="cause_click()">원인</button>
+            <button class="btn btn-danger" onclick="effect_click()">결과</button>
 
-<select id='verb_select' name="verb" onchange="setEmail2(this.value)">
-    <option class="verb_start" selected="selected">동사</option>
-    {%for verb in verb_list%}
-        <option class='verb' value="{{verb.v}}">{{data.v}}</option>
-    {%endfor%}
-</select>
+            
+	</section>
+	<!-- /Section: services -->
 
-<button class="btn btn-warning" onclick="reason()">원인</button>
-<button class="btn btn-danger" >결과</button>
+<!--<h1 id="category"></h1>-->
+<!--<h1 id="noun"></h1>-->
+<!--<h1 id="verb"></h1>-->
+<!--<form action="{% url 'jinxjinx:sentence_create' %}" method='post'>-->
+<!--    {% csrf_token %}-->
+
+<!--    <input type="text" name="cause_noun" value="아래 선택" size="10" class="input" id="cause_noun_check" readonly/> -->
+<!--    <input type="text" name="cause_verb" value="아래 선택" size="10" class="input" id="cause_verb_check" readonly/> ->-->
+<!--    <input type="text" name="effect_noun" value="아래 선택" size="10" class="input" id="effect_noun_check" readonly/> -->
+<!--    <input type="text" name="effect_verb" value="아래 선택" size="10" class="input" id="effect_verb_check" readonly/> -->
+<!--    <input class="btn btn-primary" type="submit" value="Submit"/>-->
+    
+<!--</form>-->
+
+
+<br />
+<br />
+<br />
 
 <script type="text/javascript">
     const changeCate = function (){
@@ -77,7 +139,7 @@
             data.verb_list.forEach(function(v){
                 verb_list+= `
             <option class="verb" value="${v}" >${v}</option>
-            `               
+            `
             })
             $('#verb_select').append(verb_list)
             // console.log(data.verb_list)
@@ -89,20 +151,41 @@
         })
     }
     
-    <form action="/action_page.php">
-<select name="cars">
-  <option value="volvo">Volvo XC90</option>
-  <option value="saab">Saab 95</option>
-  <option value="mercedes">Mercedes SLK</option>
-  <option value="audi">Audi TT</option>
-</select>
-<input type="submit" value="Submit">
-</form>
     
-    function reason(){
-        var val = $('#category_select').val()
-        alert(val)
+    function cause_click(){
+        
+        var cause_noun = $('#noun_select').val()
+        var cause_verb = $('#verb_select').val()
+        $('#cause_noun_check').val(cause_noun)
+        $('#cause_verb_check').val(cause_verb)
+        $('#sentence_cause').text(cause_noun +" "+cause_verb)
+
     }
+    function effect_click(){
+
+        var effect_noun = $('#noun_select').val()
+        var effect_verb = $('#verb_select').val()
+        $('#effect_noun_check').val(effect_noun)
+        $('#effect_verb_check').val(effect_verb)
+        $('#sentence_effect').text(effect_noun +" "+effect_verb)
+        
+    }
+    function submit_click(){
+
+        // var effect_noun = $('#noun_select').val()
+        // var effect_verb = $('#verb_select').val()
+        // $('#effect_noun_check').val(effect_noun)
+        // $('#effect_verb_check').val(effect_verb)
+        var cause = $('#cause_noun_check').val() + $('#cause_verb_check').val()
+        var effect = $('#effect_noun_check').val() + $('#effect_verb_check').val()
+
+        console.log(cause)
+        console.log(effect)
+        
+        
+    }
+    
+    
     
 </script>
 {%endblock%}

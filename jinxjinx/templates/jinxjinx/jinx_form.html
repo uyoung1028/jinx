@@ -1,66 +1,70 @@
-<!DOCTYPE html>
-{% extends 'base.html' %}
+<!--<!DOCTYPE html>-->
+<!--{% extends 'base.html' %}-->
 
-{%load staticfiles%}
+<!--{%load staticfiles%}-->
 
-    {% block body %}
+<!--    {% block body %}-->
     
 
-   <div class="form_box" id="cert_div_2">
-    <span class="key">원인</span>
-    <span class="button">
+<!--   <div class="form_box" id="cert_div_2">-->
+<!--    <span class="key">원인</span>-->
+<!--    <span class="button">-->
         <!--<input type="text" name="email" value="" size="10" class="input" id="check_email_1"/> @ -->
-        <input type="text" name="email2" value="" size="10" class="input"id="check_email_2" readonly/> 
-        <select name="email3" id="check_email_3" onchange="setEmail2(this.value)">
-            <option value="self" selected="selected">선택하세요</option>
-            <option value="nate.com">nate.com</option>
-            <option value="dreamwiz.com">dreamwiz.com</option>
-            <option value="yahoo.co.kr">yahoo.co.kr</option>
-            <option value="empal.com">empal.com</option>
-            <option value="unitel.co.kr">unitel.co.kr</option>
-            <option value="gmail.com">gmail.com</option>
-            <option value="korea.com">korea.com</option>
-            <option value="chol.com">chol.com</option>
-            <option value="paran.com">paran.com</option>
-            <option value="freechal.com">freechal.com</option>
-            <option value="hanmail.net">hanmail.net</option>
-            <option value="hotmail.com">hotmail.com</option>
-            <option value="self">직접 입력</option>
-        </select>
+<!--        <input type="text" name="email2" value="" size="10" class="input"id="check_email_2" readonly/> -->
+<!--        <select name="email3" id="check_email_3" onchange="setEmail2(this.value)">-->
+            
+            
+            
+<!--            <option value="self" selected="selected">선택하세요</option>-->
+<!--            <option value="nate.com">nate.com</option>-->
+<!--            <option value="dreamwiz.com">dreamwiz.com</option>-->
+<!--            <option value="yahoo.co.kr">yahoo.co.kr</option>-->
+<!--            <option value="empal.com">empal.com</option>-->
+<!--            <option value="unitel.co.kr">unitel.co.kr</option>-->
+<!--            <option value="gmail.com">gmail.com</option>-->
+<!--            <option value="korea.com">korea.com</option>-->
+<!--            <option value="chol.com">chol.com</option>-->
+<!--            <option value="paran.com">paran.com</option>-->
+<!--            <option value="freechal.com">freechal.com</option>-->
+<!--            <option value="hanmail.net">hanmail.net</option>-->
+<!--            <option value="hotmail.com">hotmail.com</option>-->
+<!--            <option value="self">직접 입력</option>-->
+<!--        </select>-->
     
         
-    </span> 
+<!--    </span> -->
         
     
     
-</div>
+<!--</div>-->
 
-	<div class="form_box" id="r_cert_div_2">
-    <span class="key">결과</span>
-    <span class="button">
+<!--	<div class="form_box" id="r_cert_div_2">-->
+<!--    <span class="key">결과</span>-->
+<!--    <span class="button">-->
         <!--<input type="text" name="email" value="" size="10" class="input" id="check_email_1"/> @ -->
-        <input type="text" name="r_email2" value="" size="10" class="input"id="r_check_email_2" readonly/> 
-        <select name="r_email3" id="r_check_email_3" onchange="r_setEmail2(this.value)">
-            <option value="self" selected="selected">선택하세요</option>
-            <option value="naver.com">naver.com</option>
-            <option value="nate.com">nate.com</option>
-            <option value="dreamwiz.com">dreamwiz.com</option>
-            <option value="yahoo.co.kr">yahoo.co.kr</option>
-            <option value="empal.com">empal.com</option>
-            <option value="unitel.co.kr">unitel.co.kr</option>
-            <option value="gmail.com">gmail.com</option>
-            <option value="korea.com">korea.com</option>
-            <option value="chol.com">chol.com</option>
-            <option value="paran.com">paran.com</option>
-            <option value="freechal.com">freechal.com</option>
-            <option value="hanmail.net">hanmail.net</option>
-            <option value="hotmail.com">hotmail.com</option>
-            <option value="self">직접 입력</option>
-        </select>
-    </span> 
+<!--        <input type="text" name="r_email2" value="" size="10" class="input"id="r_check_email_2" readonly/> -->
+<!--        <select name="r_email3" id="r_check_email_3" onchange="r_setEmail2(this.value)">-->
+            
+<!--            <option value="self" selected="selected">선택하세요</option>-->
+<!--            <option value="naver.com">naver.com</option>-->
+<!--            <option value="nate.com">nate.com</option>-->
+<!--            <option value="dreamwiz.com">dreamwiz.com</option>-->
+<!--            <option value="yahoo.co.kr">yahoo.co.kr</option>-->
+<!--            <option value="empal.com">empal.com</option>-->
+<!--            <option value="unitel.co.kr">unitel.co.kr</option>-->
+<!--            <option value="gmail.com">gmail.com</option>-->
+<!--            <option value="korea.com">korea.com</option>-->
+<!--            <option value="chol.com">chol.com</option>-->
+<!--            <option value="paran.com">paran.com</option>-->
+<!--            <option value="freechal.com">freechal.com</option>-->
+<!--            <option value="hanmail.net">hanmail.net</option>-->
+<!--            <option value="hotmail.com">hotmail.com</option>-->
+<!--            <option value="self">직접 입력</option>-->
+<!--        </select>-->
+<!--    </span> -->
     
     
-</div>
+<!--</div>-->
 
 
 
@@ -91,53 +95,53 @@
     
     
         <!-- Core JavaScript Files -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>	 
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'http://maps.google.com/maps/api/js?sensor=false' %}"></script>
-	<script src="{% static 'js/jquery.sticky.js' %}"></script>
-	<script src="{% static 'js/slippry.min.js' %}"></script> 
-	<script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
-	<script src="{% static 'js/morphext.min.js' %}"></script>
-	<script src="{% static 'js/gmap.js' %}"></script>
-	<script src="{% static 'js/jquery.mb.YTPlayer.js' %}"></script>
-    <script src="{% static 'js/jquery.easing.min.js' %}"></script>	
-	<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
-	<script src="{% static 'js/jquery.appear.js' %}"></script>
-	<script src="{% static 'js/stellar.js' %}"></script>
-	<script src="{% static 'js/wow.min.js' %}"></script>
-	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-	<script src="{% static 'js/nivo-lightbox.min.js' %}"></script>
-	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
-    <script src="{% static 'js/custom.js' %}"></script>
+<!--    <script src="{% static 'js/jquery.min.js' %}"></script>	 -->
+<!--    <script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+<!--	<script src="{% static 'http://maps.google.com/maps/api/js?sensor=false' %}"></script>-->
+<!--	<script src="{% static 'js/jquery.sticky.js' %}"></script>-->
+<!--	<script src="{% static 'js/slippry.min.js' %}"></script> -->
+<!--	<script src="{% static 'js/jquery.flexslider-min.js' %}"></script>-->
+<!--	<script src="{% static 'js/morphext.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/gmap.js' %}"></script>-->
+<!--	<script src="{% static 'js/jquery.mb.YTPlayer.js' %}"></script>-->
+<!--    <script src="{% static 'js/jquery.easing.min.js' %}"></script>	-->
+<!--	<script src="{% static 'js/jquery.scrollTo.js' %}"></script>-->
+<!--	<script src="{% static 'js/jquery.appear.js' %}"></script>-->
+<!--	<script src="{% static 'js/stellar.js' %}"></script>-->
+<!--	<script src="{% static 'js/wow.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/owl.carousel.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/nivo-lightbox.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>-->
+<!--    <script src="{% static 'js/custom.js' %}"></script>-->
     
-    <script type="text/javascript">
+<!--    <script type="text/javascript">-->
 //<![CDATA[
 //이메일
-var setEmail2 = function(val){
-	if(val == 'self'){
-		$('input[name=email2]').attr('readonly',false);
-		$('input[name=email2]').val('');
-		$('input[name=email2]').focus();
-	}else {
-		$('input[name=email2]').attr('readonly',true);
-		$('input[name=email2]').val(val);
-	}
+<!--var setEmail2 = function(val){-->
+<!--	if(val == 'self'){-->
+<!--		$('input[name=email2]').attr('readonly',false);-->
+<!--		$('input[name=email2]').val('');-->
+<!--		$('input[name=email2]').focus();-->
+<!--	}else {-->
+<!--		$('input[name=email2]').attr('readonly',true);-->
+<!--		$('input[name=email2]').val(val);-->
+<!--	}-->
 
-}
+<!--}-->
 
-var r_setEmail2 = function(val){
-	if(val == 'self'){
-		$('input[name=r_email2]').attr('readonly',false);
-		$('input[name=r_email2]').val('');
-		$('input[name=r_email2]').focus();
-	}else {
-		$('input[name=r_email2]').attr('readonly',true);
-		$('input[name=r_email2]').val(val);
-	}
+<!--var r_setEmail2 = function(val){-->
+<!--	if(val == 'self'){-->
+<!--		$('input[name=r_email2]').attr('readonly',false);-->
+<!--		$('input[name=r_email2]').val('');-->
+<!--		$('input[name=r_email2]').focus();-->
+<!--	}else {-->
+<!--		$('input[name=r_email2]').attr('readonly',true);-->
+<!--		$('input[name=r_email2]').val(val);-->
+<!--	}-->
 	
-}
+<!--}-->
 
 
-</script>
+<!--</script>-->
 
-{% endblock %}
+<!--{% endblock %}-->

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Jinx(models.Model):
@@ -19,11 +20,17 @@ class Data(models.Model):
         
     
 class Sentence(models.Model):
-    sen_reason = models.ForeignKey(Data,on_delete=models.CASCADE,related_name='reason')
-    sen_result = models.ForeignKey(Data,on_delete=models.CASCADE,related_name='result')
+    cause_noun = models.CharField(max_length=50, default='')
+    cause_verb = models.CharField(max_length=50, default='')
+    effect_noun = models.CharField(max_length=50, default='')
+    effect_verb = models.CharField(max_length=50, default='')
+
+    
+    def get_absolute_url(self):
+        return reverse('jinxjinx:sentence_list')
     
     def __str__(self):
-        return self.sen_reason.__str__() + ' + ' + self.sen_result.__str__()
+        return self.cause_noun.__str__()+' '+ self.cause_verb.__str__()+ ' + ' + self.effect_noun.__str__() +' ' + self.cause_verb.__str__()
         
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -42,6 +49,9 @@ class Verb(models.Model):
     def __str__(self):
         return self.name
     
-    
-    
+class Situation(models.Model):
+    sentence = models.ForeignKey(Sentence,on_delete=models.CASCADE,related_name='sentence')
+    date = models.CharField(max_length=50)
+    feeling = models.CharField(max_length=50)
+    weather = models.CharField(max_length=50)
     

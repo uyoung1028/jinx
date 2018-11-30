@@ -2,7 +2,7 @@
 
 {%block body%}
 {%for sentence in sentence_list%}
-    <p>{{sentence.sen_reason.n}} + {{sentence.sen_result.v}}</p>
+    <p>{{sentence.cause_noun}} {{sentence.cause_verb}} -> {{sentence.effect_noun}} {{sentence.effect_verb}}</p>
     
 {%endfor%}
 {%endblock%}

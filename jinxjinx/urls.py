@@ -5,15 +5,14 @@ app_name = 'jinxjinx'
 
 urlpatterns = [
     # path('', views.PostList.as_view(), name='list'),
-    path('tellme/', views.PostCreate.as_view(), name='create'),
-    path('jinxbox/', views.PostList.as_view(), name='list'),
-    path('sentence/', views.SentenceList.as_view(),name='sentence'),
+    path('jinxbox/', views.jinxbox_view.as_view(), name='list'),
     path('data_list/',views.DataList.as_view(),name="data_list"),
+    
     path('category/',views.CategoryList.as_view(),name="category"),
     path('category_noun/',views.category_noun,name="category_noun"),
-    
-    # 우엉
     path('noun/',views.NounList.as_view(),name="noun"),
     path('noun_verb/',views.noun_verb,name="noun_verb"),
-
+    
+    path('sentence_create/',views.SentenceCreate.as_view(),name="sentence_create"),
+    path('sentence/', views.SentenceList.as_view(),name='sentence_list'),
 ]

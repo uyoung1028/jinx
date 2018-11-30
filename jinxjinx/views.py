@@ -1,17 +1,22 @@
 from django.shortcuts import render, resolve_url, redirect
 from django.views.generic import ListView,CreateView,DetailView,UpdateView,DeleteView
-from .models import Jinx, Sentence, Data, Category, Noun
+from .models import Jinx, Sentence, Data, Category, Noun, Situation
 from django.contrib.auth.mixins import LoginRequiredMixin
 import json
 from django.http import HttpResponse
 
-class PostList(ListView):
-    model = Jinx
+class jinxbox_view(ListView):
+    model = Sentence
+    template_name = 'jinxjinx/jinxbox_list.html'
+
+class jinxbox_create(CreateView):
+    model = Sentence
+    template_name = 'jinxjinx/jinxbox_form.html'
     
 
-class PostCreate(CreateView):
-    model = Jinx
-    fields = ['title','content',]
+# class PostCreate(CreateView):
+#     model = Jinx
+#     fields = ['title','content',]
     
 class SentenceList(ListView):
     model = Sentence
@@ -56,3 +61,10 @@ def noun_verb(request):
         return HttpResponse(json.dumps(data), content_type="application/json")
     else:
         return redirect(resolve_url('home') )
+    
+class SentenceCreate(CreateView):
+    model = Sentence
+    fields = ['cause_noun', 'cause_verb', 'effect_noun', 'effect_verb',]
+    
+    
+    

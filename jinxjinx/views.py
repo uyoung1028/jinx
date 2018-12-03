@@ -35,6 +35,8 @@ class jinxbox_create(CreateView):
     
 class SentenceList(ListView):
     model = Sentence
+    ordering = ['-count']
+
     
     # def get_context_data(self,**kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -103,10 +105,12 @@ class SentenceCreate(LoginRequiredMixin, CreateView):
             if UserSentence.objects.filter(Q(user=self.request.user)&Q(sentence=sentences[0])).exists():
                 print("사용자가 있는문장 등록")
                 # 사용자가 이미 등록해놓은 문장이 있으면 그 문장으로 가야됨
+                sentences[0].update_count()
                 return redirect(resolve_url('home'))  # 나중에는 디테일페이지로
             else:
                 #이미 등록해놓은 문장이 있으면 usersentence에 저장하고 그 문장으로 이동
                 usersentence = UserSentence.objects.create(user=self.request.user, sentence=sentences[0])
+                sentences[0].update_count()
                 return redirect(resolve_url('home'))
         else:
             print("없음")
@@ -114,6 +118,7 @@ class SentenceCreate(LoginRequiredMixin, CreateView):
             # self.object.user = self.request.user
             form.save()
             UserSentence.objects.create(user=self.request.user, sentence=sentences[0])
+            sentences[0].update_count()
             return super().form_valid(form)
     
     

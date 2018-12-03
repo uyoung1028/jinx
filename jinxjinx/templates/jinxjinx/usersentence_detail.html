@@ -1,13 +1,78 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{usersentence.sentence}}</p>
-<p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{usersentence.user}}</p>
+<style>
+table {
+    font-family: 'Noto Sans JP', 'Noto Sans KR', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
 
-{% for comment in usersentence.comment_set.all%}
-    <p>{{comment.date}} / {{comment.weather}} // {{comment.feeling}} / {{comment.result}}</p>
-    
-{% endfor %}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    vertical-align: middle;
+}
 
+.no-right-border {
+    border-right-color: transparent;
+    border-left-color: transparent;
+}
+</style>
+
+<!--<p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{usersentence.sentence}}</p>-->
+<!--<p id="quot_end" style="display:inline; color:black; font-family: 'Noto Sans KR', sans-serif; font-size:100%;"> 날짜 / 날씨 / 기분 / 결과</p>-->
+<!--{% for comment in usersentence.comment_set.all%}-->
+<!--    <p>{{comment.date}} / {{comment.weather}} / {{comment.feeling}} / {{comment.result}}</p>-->
+<!--{% endfor %}-->
+
+    <section id="share" class="home-section"style="padding-top: 70px; padding-bottom: 200px;">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+                <div class="section-heading text-center">
+                    <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Jinx Box</div>
+                    <p></p>
+                    <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">나의 징크스 수집 박스!</div>
+                    <p></p>
+                    <p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:150%;">"{{usersentence.sentence}}"</p>
+                    
+                    <div>
+                        <table align="center" style="width: 1000px">
+                            <thead> 
+                                <tr style="background-color: #dbdbdb;">
+                                    <th class="no-right-border" >날짜</th>
+                                    <th class="no-right-border" >날씨</th>
+                                    <th class="no-right-border" >기분</th>
+                                    <th class="no-right-border" >결과</th>
+                                </tr>
+                            </thead>
+                            
+                            {% for comment in usersentence.comment_set.all%}
+                            <tbody>
+                                <tr>
+                                    <td class="no-right-border" style="width: 80px">
+                                        <div>{{comment.date|date:"Y년 m월 d일"}}</div>
+                                    </td>
+                                    <td class="no-right-border" style="width: 80px;">
+                                        <div>{{comment.weather}}</div>
+                                    </td>
+                                    <td class="no-right-border" style="width: 80px;">
+                                        <div>{{comment.feeling}}</div>
+                                    </td>
+                                    <td class="no-right-border" style="width: 80px;">
+                                        <div>{{comment.result}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

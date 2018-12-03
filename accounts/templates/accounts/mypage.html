@@ -7,9 +7,27 @@
         }
     </style>
     
-    <h4>{{user.last_name}}{{user.first_name}}'s Page <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" alt="Profile Picture :)" height="42" width="42"></h4>
-    <p>나이: </p>
-    <p>직업: </p>
+    <section id="mypage" class="home-section"style="padding-top: 70px; padding-bottom: 180px;">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<div class="section-heading text-center">        
+				    <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:150%;">{{user.last_name}}{{user.first_name}}'s Page <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" alt="Profile Picture :)" height="42" width="42"></div>
+                    <p></p>
+                    <div class="service-box" style="background-color:#ffffff; border-radius: 10px; width: 400px; margin: 0 auto">
+                        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">나이: 26</div>
+                        <p></p>
+                        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">성별: 여자</div>
+                        <p></p>
+                        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">지역: 서울</div>
+                        <p></p>
+                        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">직업: 학생</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
    
     
 {% endblock %}

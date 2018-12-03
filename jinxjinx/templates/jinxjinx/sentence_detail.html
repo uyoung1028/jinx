@@ -1,7 +1,63 @@
 {% extends 'base.html' %}
+{% load custom %}
 {% block body %}
+
+<style>
+table {
+    font-family: 'Noto Sans JP', 'Noto Sans KR', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    vertical-align: middle;
+}
+
+.no-right-border {
+    border-right-color: transparent;
+    border-left-color: transparent;
+}
+</style>
 
 <p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{sentence.cause_noun}} {{sentence.cause_verb}} -> {{sentence.effect_noun}} {{sentence.effect_verb}}</p>
 
+
+<div>
+    <table align="center">
+        <thead> 
+            <tr style="background-color: #dbdbdb;">
+                <th class="no-right-border" >원인</th>
+                <th class="no-right-border" ></th>
+                <th class="no-right-border" >결과</th>
+                <th class="no-right-border" >개수</th>
+            </tr>
+        </thead>
+                        
+        <!--{%for sentence in sentence_list%}-->
+        <tbody>
+            <tr>
+
+                <td class="no-right-border" style="width: 180px">
+                    <div>{{sentence.cause_noun}} {{sentence.cause_verb}} </div>
+                </td>
+                <td class="no-right-border" style="width: 10px;">
+                    <div><i class="fas fa-long-arrow-alt-right"></i></div>
+                </td>
+                <td class="no-right-border" style="width: 180px;">
+                    <div>{{sentence.effect_noun}} {{sentence.effect_verb}}</div>
+                </td>
+                <td class="no-right-border" style="width: 40px;">
+                </td>
+            </tr>
+        </tbody>
+        <!--{%endfor%}-->
+    </table>
+                    
+</div>
 
 {% endblock %}

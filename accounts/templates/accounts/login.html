@@ -3,23 +3,35 @@
 
 {% block body %}
 
-    
     <!-- LOGIN LOGOUT -->
     {% if user.is_authenticated %}
         <h1>{{user.last_name}}{{user.first_name}}</h1>
         <h1>{{user.link}}</h1>
         <a href="{%url 'accounts:logout'%}">LOG OUT</a>
     {% else %}
-        <form method='post'>
-            {%csrf_token%}
-            {{form.as_p}}
-            <input type="submit" value="Submit"/>
-        </form>
-        {% providers_media_js %}
-        <a style="background-color:#3b5998" class="btn btn-primary" href="{% provider_login_url "facebook" method="js_sdk" %}">
-            <i class="fab fa-facebook-square"></i>
-            Facebook Connect
-        </a>
+    
+        <section id="login" class="home-section"style="padding-top: 70px; padding-bottom: 180px;">
+    		<div class="row">
+    			<div class="col-lg-8 col-lg-offset-2">
+    				<div class="section-heading text-center">  
+    		    		<div class="service-box" style="background-color:#ffffff; border-radius: 10px; width: 400px; margin: 0 auto">
+                            <p></p>
+                            <form method='post', style="font-family: 'Noto Sans KR', sans-serif;">
+                                {%csrf_token%}
+                                {{form.as_p}}
+                                <input type="submit" value="Jinx Box 계정으로 로그인"/>
+                            </form>
+                            <p></p>
+                            {% providers_media_js %}
+                            <a style="background-color:#3b5998" class="btn btn-primary" href="{% provider_login_url "facebook" method="js_sdk" %}" style="font-family: 'Noto Sans KR'">
+                                <i class="fab fa-facebook-square"></i>
+                                Facebook 계정으로 로그인
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     
         <!--<a href="{%url 'accounts:login'%}">LOG IN</a>-->
     {% endif %}

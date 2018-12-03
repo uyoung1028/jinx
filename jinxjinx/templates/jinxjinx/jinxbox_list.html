@@ -3,66 +3,138 @@
 {%block body%}
 
 <style>
-/*table {*/
-/*    font-family: arial, sans-serif;*/
-/*    border-collapse: collapse;*/
-/*    width: 100%;*/
-/*}*/
+table {
+    font-family: 'Noto Sans JP', 'Noto Sans KR', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
 
-/*td, th {*/
-/*    border: 1px solid #dddddd;*/
-/*    text-align: left;*/
-/*    padding: 8px;*/
-/*}*/
+}
 
-/*tr:nth-child(even) {*/
-/*    background-color: #dddddd;*/
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    vertical-align: middle;
+    height: 50px;
+
+
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.no-right-border {
+    border-right-color: transparent;
+    border-left-color: transparent;
+
 }
 </style>
-<div class="container">
-    <div class="section-heading text-center">
-        <p></p>
-        <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Jinx Box</div>
-        <p></p>
-    
-        <!--<div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">나의 징크스 확인</div>-->
-        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">해당 징크스가 일어난 날, 그날의 감정, 그리고 결과를 입력해보아요</div>
-        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">징크스 번호를 클릭하면 상세 내용을 살필 수 있습니다</div>
+
+<section id="box" class="home-section"style="padding-top: 70px; padding-bottom: 200px;">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+            <div class="section-heading text-center">
+                <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Jinx Box</div>
+                <p></p>
+                <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">나의 징크스 수집 박스!</div>
+                <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">해당 징크스가 일어난 날, 그날의 감정, 그리고 결과를 입력해보아요</div>
+                <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">징크스 번호를 클릭하면 상세 내용을 살필 수 있습니다</div>
+                <p></p>
+            </div>
+        <div>
+            <table align="center" border="1">
+                        
+                {%for sentence in sentence_list%}
+                <tbody>
+                    <tr>
+                        <td class="no-right-border">
+                            <a href="{% url 'jinxjinx:usersentence_detail' sentence.id %}" style="font-family: 'Noto Sans KR', sans-serif; font-size:120%; display:inline;">{{sentence.id}}</a>
+                
+                        </td>
+                        <td class="no-right-border" style="width: 180px">
+                            <div>{{sentence.sentence.cause_noun}} {{sentence.sentence.cause_verb}} </div>
+                        </td>
+                        <td class="no-right-border" style="width: 10px;">
+                            <div><i class="fas fa-long-arrow-alt-right"></i></div>
+                        </td>
+                        <td class="no-right-border" style="width: 180px;">
+                            <div>{{sentence.sentence.effect_noun}} {{sentence.sentence.effect_verb}}</div>
+                        </td>
+                        <td class="no-right-border">
+                            <div>
+                                <form action="{% url 'jinxjinx:comment_create' sentence.id%}" method="post">
+                                    {% csrf_token%}
+                                    <input type="date" name="date"/>
+                                    <select id='weather_select' name="weather" onchange="changeCate()">
+                                        <option class="category_start" selected="selected">날씨</option>
+                                        <option class="good" value="좋음">좋음</option>
+                                        <option class="bad" value="나쁨">나쁨</option>
+                                        <option class="soso" value="보통">보통</option>
+                                            
+                                    </select>
+                                    <select id='feeling_select' name="feeling" onchange="changeCate()">
+                                        <option class="category_start" selected="selected">기분</option>
+                                        <option class="good" value="기쁨">기쁨</option>
+                                        <option class="bad" value="슬픔">슬픔</option>
+                                        <option class="angry" value="화남">화남</option>
+                                        <option class="soso" value="보통">보통</option>
+                                            
+                                    </select>
+                                    <select id='result_select' name="result" onchange="changeCate()">
+                                        <option class="category_start" selected="selected">결과</option>
+                                        <option class="Yes" value="예">예</option>
+                                        <option class="No" value="아니오">아니오</option>
+                                            
+                                    </select>
+                                    <input type="submit" value="저장"/>
+                                </form>
+                              
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                {%endfor%}
+            </table>
+        </div>
     </div>
+</section>
     
-        {%for sentence in sentence_list%}
-          <a href="{% url 'jinxjinx:detail' sentence.id %}" style="font-family: 'Noto Sans KR', sans-serif; font-size:120%; display:inline;">{{sentence.id}}</a>
-          <p style="font-family: 'Noto Sans KR', sans-serif; font-size:120%; display:inline;">{{sentence.sentence.cause_noun}}{{sentence.sentence.cause_verb}} <i class="fas fa-long-arrow-alt-right"></i> {{sentence.sentence.effect_noun}}{{sentence.sentence.effect_verb}}</p>
-          <form action="{% url 'jinxjinx:comment_create' sentence.id%}" method="post">
-              {% csrf_token%}
-              <input type="date" name="date"/>
-              <select id='weather_select' name="weather" onchange="changeCate()">
-                    <option class="category_start" selected="selected">날씨</option>
-                    <option class="good" value="good">좋음</option>
-                    <option class="bad" value="bad">나쁨</option>
-                    <option class="soso" value="soso">보통</option>
+        <!--{%for sentence in sentence_list%}-->
+        <!--  <a href="{% url 'jinxjinx:detail' sentence.id %}" style="font-family: 'Noto Sans KR', sans-serif; font-size:120%; display:inline;">{{sentence.id}}</a>-->
+        <!--  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:120%; display:inline;">{{sentence.sentence.cause_noun}}{{sentence.sentence.cause_verb}} <i class="fas fa-long-arrow-alt-right"></i> {{sentence.sentence.effect_noun}}{{sentence.sentence.effect_verb}}</p>-->
+        <!--  <form action="{% url 'jinxjinx:comment_create' sentence.id%}" method="post">-->
+        <!--      {% csrf_token%}-->
+        <!--      <input type="date" name="date"/>-->
+        <!--      <select id='weather_select' name="weather" onchange="changeCate()">-->
+        <!--            <option class="category_start" selected="selected">날씨</option>-->
+        <!--            <option class="good" value="good">좋음</option>-->
+        <!--            <option class="bad" value="bad">나쁨</option>-->
+        <!--            <option class="soso" value="soso">보통</option>-->
                         
-              </select>
-              <select id='feeling_select' name="feeling" onchange="changeCate()">
-                    <option class="category_start" selected="selected">기분</option>
-                    <option class="good" value="good">기쁨</option>
-                    <option class="bad" value="bad">슬쁨</option>
-                    <option class="angry" value="angry">화남</option
-                    <option class="soso" value="soso">보통</option>
+        <!--      </select>-->
+        <!--      <select id='feeling_select' name="feeling" onchange="changeCate()">-->
+        <!--            <option class="category_start" selected="selected">기분</option>-->
+        <!--            <option class="good" value="good">기쁨</option>-->
+        <!--            <option class="bad" value="bad">슬쁨</option>-->
+        <!--            <option class="angry" value="angry">화남</option>-->
+        <!--            <option class="soso" value="soso">보통</option>-->
                         
-              </select>
-              <select id='result_select' name="result" onchange="changeCate()">
-                    <option class="category_start" selected="selected">결과</option>
-                    <option class="Yes" value="True">Yes</option>
-                    <option class="No" value="False">No</option>
+        <!--      </select>-->
+        <!--      <select id='result_select' name="result" onchange="changeCate()">-->
+        <!--            <option class="category_start" selected="selected">결과</option>-->
+        <!--            <option class="Yes" value="True">Yes</option>-->
+        <!--            <option class="No" value="False">No</option>-->
                         
-              </select>
-              <input type="submit" value="Submit"/>
-          </form>
+        <!--      </select>-->
+        <!--      <input type="submit" value="Submit"/>-->
+        <!--  </form>-->
           
           
-        {%endfor%}
-      
-    
+        <!--{%endfor%}-->
+
     {%endblock%}
 </div>

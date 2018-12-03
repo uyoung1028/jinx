@@ -30,13 +30,19 @@ class Sentence(models.Model):
     cause_verb = models.CharField(max_length=50, default='')
     effect_noun = models.CharField(max_length=50, default='')
     effect_verb = models.CharField(max_length=50, default='')
-
+    count = models.IntegerField(default=0)
     
     def get_absolute_url(self):
         return reverse('jinxjinx:sentence_list')
     
     def __str__(self):
-        return self.cause_noun.__str__()+' '+ self.cause_verb.__str__()+ ' + ' + self.effect_noun.__str__() +' ' + self.cause_verb.__str__()
+        return self.cause_noun.__str__()+' '+ self.cause_verb.__str__()+ ' + ' + self.effect_noun.__str__() +' ' + self.effect_verb.__str__()
+    
+    def update_count(self):
+        self.count = self.user.all().count()
+        self.save()
+        print(self.count)
+    
 
 class UserSentence(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -75,7 +81,7 @@ class Comment(models.Model):
     date = models.DateField(max_length=50)
     weather = models.CharField(max_length=50)
     feeling = models.CharField(max_length=50)
-    result = models.BooleanField(max_length=50)    
+    result = models.CharField(max_length=50)    
 
     def __str__(self):
         return self.sentence.__str__()

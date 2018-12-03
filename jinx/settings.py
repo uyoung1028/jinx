@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'accounts',
     
     'import_export',
+    
 ]
 
 SITE_ID = 1

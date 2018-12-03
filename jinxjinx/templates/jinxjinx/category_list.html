@@ -5,7 +5,7 @@
 
 	<!-- Section: services -->
     <!--<section id="service" class="home-section color-dark"style="padding-top: 90px;padding-bottom: 50px;">-->
-    <section id="service" class="home-section"style="padding-top: 180px; padding-bottom: 180px;">
+    <section id="service" class="home-section"style="padding-top: 70px; padding-bottom: 200px;">
 		<!--<div class="container marginbot-50">-->
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
@@ -13,67 +13,33 @@
 					    <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Tell Me</div>
 					    <p></p>
 					    <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">Tell me 그대의 징크스! 아래 선택지를 통해 징크스 문장을 만들어보셔요!</div>
-					    <p></p>
 
 					</div>
 				</div>
 			</div>
         
-		<!--</div>-->
-		<!--<div class="text-center">-->
-		    <div class="container">
+            <div class="container"style="padding-top: 50px; width:80%">
                 <div class="row">
-                    <!--<div class="col-md-8">-->
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8 text-center">
-        				<!--<div class="wow fadeInLeft" data-wow-delay="0.2s">-->
-                        <div class="service-box"style="background-color:#FFFFFF;">
-        					<!--<div class="service-icon">-->
-        						<!--<span class="pe-7s-monitor pe-5x"></span> -->
-        						<!--<h5 id="intro" style="color:black; font-family: 'Noto Sans KR', sans-serif;">아래에서 값을 입력해주세요!!</h5>-->
-        						<p id="quot_start" style="display:inline; color:black; font-family: 'Noto Sans KR', sans-serif; font-size:200%;">" </p>
-            					<p id="cause_noun_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
-            					<p id="cause_verb_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
-            					<p <i style="display:inline; font-size:120%;" class="fas fa-long-arrow-alt-right"></i> </p>
-            					<p id="effect_noun_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
-            					<p id="effect_verb_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
-            					<p id="quot_end" style="display:inline; color:black; font-family: 'Noto Sans KR', sans-serif; font-size:200%;"> "</p>
-        						<form action="{% url 'jinxjinx:sentence_create' %}" method='post'>
-                                    <input class="btn btn-primary" type="submit" value="저장"/>
-        						    {% csrf_token %}
-        						    <input type="hidden" name="cause_noun" value="아래 선택" size="10" class="input" id="cause_noun_check" align="center" readonly/> 
-                                    <input type="hidden" name="cause_verb" value="아래 선택" size="10" class="input" id="cause_verb_check" readonly/>
-                                    <input type="hidden" name="effect_noun" value="아래 선택" size="10" class="input" id="effect_noun_check" readonly/> 
-                                    <input type="hidden" name="effect_verb" value="아래 선택" size="10" class="input" id="effect_verb_check" readonly/> 
-                                </form>
-        				</div>
-        			<!--<div class="service-desc">						-->
-        		    </div>
-                </div>
-            </div>
-            
-            <div class="container"style="padding-top: 50px;">
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8 text-center">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-8 ">
 
                         <h6>보기를 선택하여 원인/결과 생성</h6>
             
-                        <select id='category_select' name="category" onchange="changeCate()">
+                        <select id='category_select' name="category" onchange="changeCate()"  style="height: 32px;">
                             <option class="category_start" selected="selected">카테고리</option>
                             {%for category in category_list%}
                                 <option class="category" value="{{category.name}}">{{category.name}}</option>
                             {%endfor%}
                         </select>
                         
-                        <select id='noun_select' name="noun" onchange="changeNoun(this.value)">
+                        <select id='noun_select' name="noun" onchange="changeNoun(this.value)" style="height: 32px;">
                             <option class="noun_start" selected="selected">명사</option>
                              {%for noun in noun_list%}
                                 <option class="noun" value="{{noun.name}}">{{noun.name}}</option>
                             {%endfor%}   
                         </select>
                         
-                        <select id='verb_select' name="verb" onchange="changeVerb(this.value)">
+                        <select id='verb_select' name="verb" onchange="changeVerb(this.value)"  style="height: 32px;">
                             <option class="verb_start" selected="selected">동사</option>
                           
                         </select>
@@ -83,9 +49,49 @@
                     </div>
                 </div>
             </div>
-            <p>
-                
-            </p>
+                <p></p>
+            <div></div>
+            
+		<!--</div>-->
+		<!--<div class="text-center">-->
+		    <div class="container">
+                <div class="row">
+                    <!--<div class="col-md-8">-->
+                    <div class="col-md-10"></div>
+                    <div class="col-md-8 text-center">
+        				<!--<div class="wow fadeInLeft" data-wow-delay="0.2s">-->
+                        <div class="service-box" style="background-color:#e9e9e9;border-radius: 10px; width:50%">
+                            <div class="row">
+                                <div class="col-md-8">
+            					<!--<div class="service-icon">-->
+            						<!--<span class="pe-7s-monitor pe-5x"></span> -->
+            						<!--<h5 id="intro" style="color:black; font-family: 'Noto Sans KR', sans-serif;">아래에서 값을 입력해주세요!!</h5>-->
+            						<p id="quot_start" style="display:inline; color:black; font-family: 'Noto Sans KR', sans-serif; font-size:200%;">" </p>
+                					<p id="cause_noun_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
+                					<p id="cause_verb_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
+                					<p <i style="display:inline; font-size:120%;" class="fas fa-long-arrow-alt-right"></i> </p>
+                					<p id="effect_noun_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
+                					<p id="effect_verb_check_h1" style="display:inline; font-family: 'Noto Sans KR', sans-serif; font-size:120%;"></p>
+                					<p id="quot_end" style="display:inline; color:black; font-family: 'Noto Sans KR', sans-serif; font-size:200%;"> "</p>
+                                </div>
+                                <div class="col-md-4">
+            						<form action="{% url 'jinxjinx:sentence_create' %}" method='post'>
+                                    <input class="btn btn-primary" type="submit" style="display:inline;" value="저장"/>
+            						<!--<form action="{% url 'jinxjinx:sentence_create' %}" method='post'>-->
+            						{% csrf_token %}
+            						    <input type="hidden" name="cause_noun" value="아래 선택" size="10" class="input" id="cause_noun_check" align="center" readonly/> 
+                                        <input type="hidden" name="cause_verb" value="아래 선택" size="10" class="input" id="cause_verb_check" readonly/>
+                                        <input type="hidden" name="effect_noun" value="아래 선택" size="10" class="input" id="effect_noun_check" readonly/> 
+                                        <input type="hidden" name="effect_verb" value="아래 선택" size="10" class="input" id="effect_verb_check" readonly/> 
+                                    </form>
+                                </div>
+                            </div>
+        				</div>
+        			<!--<div class="service-desc">						-->
+        		    </div>
+                </div>
+            </div>
+            
 	</section>
 	<!-- /Section: services -->
 

@@ -7,7 +7,22 @@
 }
 
 #service {
-	background: url(../img/wondergirls4.jpeg);
-	background-position: center;
-	/*background-color: red;*/
+	background: url(../img/wondergirls10.jpg);
+	background-position: 25%;
+	background-color: red;
+	background: url(../img/wondergirls10.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
+
+
+#login {
+ height:80%;
+ background: url(../img/bg1.png);
+ background-position: 25%;
+}
+
+ 

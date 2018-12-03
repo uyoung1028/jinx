@@ -12,11 +12,6 @@
 @import url('pe-icon-7-stroke.css');
 @import url('helper.css');
 
-#service {
-	background: url(../img/wondergirls4.jpeg);
-	/*background-color: red;*/
-}
-
 body {
     width: 100%;
     height: 100%;

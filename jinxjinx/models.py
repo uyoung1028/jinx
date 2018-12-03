@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.conf import settings
+
 # from django_pandas.io import read_frame
 # from django_pandas.managers import DataFrameManager
 User = get_user_model()
@@ -35,10 +37,14 @@ class Sentence(models.Model):
     
     def __str__(self):
         return self.cause_noun.__str__()+' '+ self.cause_verb.__str__()+ ' + ' + self.effect_noun.__str__() +' ' + self.cause_verb.__str__()
+
 class UserSentence(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     sentence = models.ForeignKey(Sentence,on_delete=models.CASCADE)
     count = models.PositiveIntegerField(default=0)
+    
+    def __str__(self):
+        return self.sentence.__str__() + ' / ' + self.user.__str__()
 
         
 class Category(models.Model):
@@ -58,13 +64,24 @@ class Verb(models.Model):
     def __str__(self):
         return self.name
     
-class Situation(models.Model):
-    sentence = models.ForeignKey(Sentence,on_delete=models.CASCADE,related_name='sentence')
-    date = models.CharField(max_length=50)
-    feeling = models.CharField(max_length=50)
-    weather = models.CharField(max_length=50)
-    
+# class Situation(models.Model):
+#     sentence = models.ForeignKey(Sentence,on_delete=models.CASCADE,related_name='sentence')
 
+    
+class Comment(models.Model):
+    sentence = models.ForeignKey(UserSentence, on_delete=models.CASCADE)
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+    # content = models.TextField()
+    date = models.DateField(max_length=50)
+    weather = models.CharField(max_length=50)
+    feeling = models.CharField(max_length=50)
+    result = models.BooleanField(max_length=50)    
+
+    def __str__(self):
+        return self.sentence.__str__()
+        
+    def get_absolute_url(self):
+        return reverse('jinxjinx:usersentence_detail', kwargs={'pk': self.sentence_id})
 
 # class DataAnalaysis(models.Model):
     

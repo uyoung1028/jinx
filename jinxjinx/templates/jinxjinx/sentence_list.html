@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {%block body%}
-{% comment %}
+<!--{% comment %}-->
 <!--{%if my_sentence_list %}-->
 <!--    {%for sentence in my_sentence_list%}-->
 <!--        <p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{sentence.cause_noun}} {{sentence.cause_verb}} -> {{sentence.effect_noun}} {{sentence.effect_verb}}</p>-->
@@ -9,13 +9,88 @@
 <!--    {%endfor%}-->
 <!--{%else%}-->
 <!--{%endif%}-->
-{% endcomment %}
+<!--{% endcomment %}-->
+<style>
+table {
+    font-family: 'Noto Sans JP', 'Noto Sans KR', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
 
-<h1>인기 징크스</h1>
-    {%for sentence in sentence_list%}
-        <p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;" >{{sentence.cause_noun}} {{sentence.cause_verb}} <i class="fas fa-long-arrow-alt-right"></i> {{sentence.effect_noun}} {{sentence.effect_verb}} / {{sentence.user.all.count}}</p>
+
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    vertical-align: middle;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.no-right-border {
+    border-right-color: transparent;
+}
+
+.align {
+    vertical-align: middle;
+
+}
+</style>
+
+    <section id="share" class="home-section"style="padding-top: 80px; padding-bottom: 200px;">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+                <div class="section-heading text-center">
+                    <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Share</div>
+                    <p></p>
+                    <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">다른 사람들은 어떤 징크스를 가지고 있을까용홍홍</div>
+                    <p></p>
+
+                    <table align="center">
+                        <thead> 
+                            <tr style="background-color: #EEE;">
+                                <th colspan="3">Jinx</th>
+                                <th>count</th>
+                            </tr>
+                        </thead>
+                        
+                        {%for sentence in sentence_list%}
+                        <tbody>
+                            <tr style="align">
+                                <td class="no-right-border" style="width: 180px">
+                                    <div>{{sentence.cause_noun}} {{sentence.cause_verb}} </div>
+                                </td>
+                                <td class="no-right-border" style="width: 10px;">
+                                    <div><i class="fas fa-long-arrow-alt-right"></i></div>
+                                </td>
+                                <td style="width: 180px;">
+                                    <div>{{sentence.effect_noun}} {{sentence.effect_verb}}</div>
+                                </td>
+                                <td style="width: 40px;">
+                                    <div>{{sentence.user.all.count}}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {%endfor%}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+<!--<h1 style="font-family: 'Noto Sans KR', sans-serif;">인기 징크스</h1>-->
+<!--    {%for sentence in sentence_list%}-->
+<!--        <p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{sentence.cause_noun}} {{sentence.cause_verb}} <i class="fas fa-long-arrow-alt-right"></i> {{sentence.effect_noun}} {{sentence.effect_verb}} / {{sentence.user.all.count}}</p>-->
         
-    {%endfor%}
+<!--    {%endfor%}-->
     
+<!--    </section>-->
 
 {%endblock%}
+
+

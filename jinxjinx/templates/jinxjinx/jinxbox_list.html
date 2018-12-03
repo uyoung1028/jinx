@@ -2,87 +2,67 @@
 {% load custom %}
 {%block body%}
 
-<h1>나만의 징크스 박스</h1>
-
-
 <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+/*table {*/
+/*    font-family: arial, sans-serif;*/
+/*    border-collapse: collapse;*/
+/*    width: 100%;*/
+/*}*/
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
+/*td, th {*/
+/*    border: 1px solid #dddddd;*/
+/*    text-align: left;*/
+/*    padding: 8px;*/
+/*}*/
 
-tr:nth-child(even) {
-    background-color: #dddddd;
+/*tr:nth-child(even) {*/
+/*    background-color: #dddddd;*/
 }
 </style>
-<h2>JINX Box</h2>
-<select id='sentence_select' name="sentence" onchange="changeCate()">
-    <option class="sentence_start" selected="selected">내징크스</option>
-    {%for sentence in sentence_list%}
-        <option class="sentence" value="{{sentence.id}}">{{sentence.name}}</option>
-    {%endfor%}
-</select>
-<table style="width:100%">
-  <tr>
-    <th>번호</th>
-    <th>날짜</th> 
-    <th>날씨</th>
-    <th>기분</th>
-    <th>결과</th>    
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>date1</td> 
-    <td>cloudy</td>
-    <td>happy</td>
-    <td>N</td>    
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>date2</td> 
-    <td>sad</td>
-    <td>sad</td>
-    <td>Y</td>    
-  </tr>
-</table>
-
-{%endblock%}
-
-<!---------------------------정묵----------------------------------------------------------------------->
-// <script type="text/javascript">
-//     const changeSentence = function (){
-//         var select_sentence = $('#sentence_select').val()
-//         $('#sentence').text(select_sentence)
-        
-//         $.ajax({
-//           type: "POST",
-//           url: "{% url 'jinxjinx:category_noun'%}",
-//           data: {'name':select_category, 'csrfmiddlewaretoken':'{{csrf_token}}'},
-//           dataType: 'json',
+<div class="container">
+    <div class="section-heading text-center">
+        <p></p>
+        <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Jinx Box</div>
+        <p></p>
+    
+        <!--<div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">나의 징크스 확인</div>-->
+        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">해당 징크스가 일어난 날, 그날의 감정, 그리고 결과를 입력해보아요</div>
+        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">징크스 번호를 클릭하면 상세 내용을 살필 수 있습니다</div>
+    </div>
+    
+        {%for sentence in sentence_list%}
+          <a href="{% url 'jinxjinx:detail' sentence.id %}" style="font-family: 'Noto Sans KR', sans-serif; font-size:120%; display:inline;">{{sentence.id}}</a>
+          <p style="font-family: 'Noto Sans KR', sans-serif; font-size:120%; display:inline;">{{sentence.sentence.cause_noun}}{{sentence.sentence.cause_verb}} <i class="fas fa-long-arrow-alt-right"></i> {{sentence.sentence.effect_noun}}{{sentence.sentence.effect_verb}}</p>
+          <form action="{% url 'jinxjinx:comment_create' sentence.id%}" method="post">
+              {% csrf_token%}
+              <input type="date" name="date"/>
+              <select id='weather_select' name="weather" onchange="changeCate()">
+                    <option class="category_start" selected="selected">날씨</option>
+                    <option class="good" value="good">좋음</option>
+                    <option class="bad" value="bad">나쁨</option>
+                    <option class="soso" value="soso">보통</option>
+                        
+              </select>
+              <select id='feeling_select' name="feeling" onchange="changeCate()">
+                    <option class="category_start" selected="selected">기분</option>
+                    <option class="good" value="good">기쁨</option>
+                    <option class="bad" value="bad">슬쁨</option>
+                    <option class="angry" value="angry">화남</option
+                    <option class="soso" value="soso">보통</option>
+                        
+              </select>
+              <select id='result_select' name="result" onchange="changeCate()">
+                    <option class="category_start" selected="selected">결과</option>
+                    <option class="Yes" value="True">Yes</option>
+                    <option class="No" value="False">No</option>
+                        
+              </select>
+              <input type="submit" value="Submit"/>
+          </form>
           
-//           success: function(data){
-//             $('.noun').remove()
-//             $('.verb').remove()
-
-//             var noun_list = ``
-//             data.noun_list.forEach(function(v){
-//                 noun_list+= `
-//             <option class="noun" value="${v}" >${v}</option>
-//             `               
-//             })
-//             $('#noun_select').append(noun_list)
-//             // console.log(data.noun_list)
-//           },
-//           error: function(){
-            
-//           }
           
-//         })
-//     }
+        {%endfor%}
+      
+    
+    {%endblock%}
+</div>

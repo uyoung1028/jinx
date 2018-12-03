@@ -1,17 +1,28 @@
-from django.shortcuts import render, resolve_url, redirect
+from django.shortcuts import render, resolve_url, redirect, get_object_or_404
 from django.views.generic import ListView,CreateView,DetailView,UpdateView,DeleteView
-from .models import Jinx, Sentence, Data, Category, Noun, Situation, UserSentence
+from .models import Jinx, Sentence, Data, Category, Noun, UserSentence, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
 import json
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import AnonymousUser
 from django.db.models import Q
+from .forms import CommentForm
 
 
-class jinxbox_view(ListView):
-    model = Sentence
+class jinxbox_view(LoginRequiredMixin, ListView):
+    model = UserSentence
     template_name = 'jinxjinx/jinxbox_list.html'
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        if str(self.request.user) == "AnonymousUser":
+            context['my_sentence_list'] = False
+        else:
+            my_sentence = UserSentence.objects.filter(user=self.request.user)
+            context['sentence_list'] = my_sentence
+        return context
+    
 
 class jinxbox_create(CreateView):
     model = Sentence
@@ -25,14 +36,14 @@ class jinxbox_create(CreateView):
 class SentenceList(ListView):
     model = Sentence
     
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        if str(self.request.user) == "AnonymousUser":
-            context['my_sentence_list'] = False
-        else:
-            my_sentence = Sentence.objects.filter(user=self.request.user)
-            context['my_sentence_list'] = my_sentence
-        return context
+    # def get_context_data(self,**kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     if str(self.request.user) == "AnonymousUser":
+    #         context['my_sentence_list'] = False
+    #     else:
+    #         my_sentence = Sentence.objects.filter(user=self.request.user)
+    #         context['my_sentence_list'] = my_sentence
+    #     return context
     
 
 class DataList(ListView):
@@ -106,4 +117,32 @@ class SentenceCreate(LoginRequiredMixin, CreateView):
             return super().form_valid(form)
     
     
+class SentenceDetail(DetailView):
+    model = Sentence
+    
+    # def get_object(self):
+    #     sentence = Sentence.objects.prefetch_related('comment_set__user').select_related('user')
+    #     return get_object_or_404(sentence, pk=self.kwargs.get('pk'))
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['form'] = CommentForm()
+    #     return context
+        
+class CommentCreate(LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ['date','weather','feeling','result',]
+    
+    def form_valid(self,form):
+        sentence = UserSentence.objects.get(id=self.kwargs.get('pk'))
+        # user_sentence = UserSentence.objects.filter(sentence = sentence, user = self.request.user)
+        self.object = form.save(commit=False)
+        self.object.sentence = sentence
+        # self.object.user = self.request.user
+        self.object.save()
+        
+        return super().form_valid(form)
+    
+class UserSentenceDetail(DetailView):
+    model = UserSentence
     

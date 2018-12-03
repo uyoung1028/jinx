@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{usersentence.sentence}}</p>
+<p style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">{{usersentence.user}}</p>
+
+{% for comment in usersentence.comment_set.all%}
+    <p>{{comment.date}} / {{comment.weather}} // {{comment.feeling}} / {{comment.result}}</p>
+    
+{% endfor %}
+
+
+{% endblock %}

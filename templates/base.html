@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
-<body style="background-color:#F2F2F2;">
+<body style="background-color:#F2F2F2;" onload="navAddClass()">
     
     <!-- Navigation -->
     <div id="navigation">
@@ -53,10 +53,10 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="menu">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="active"><a href="{% url 'home' %}" style="font-family: 'Noto Sans KR', sans-serif;">Home</a></li>
-                                    <li><a href="{% url 'jinxjinx:category' %}" style="font-family: 'Noto Sans KR', sans-serif;">Tell Me</a></li>
-                                    <li><a href="{% url 'jinxjinx:jinxbox_list' %}" style="font-family: 'Noto Sans KR', sans-serif;">Jinx Box</a></li>
-                                    <li><a href="{% url 'jinxjinx:sentence_list' %}" style="font-family: 'Noto Sans KR', sans-serif;">Share</a></li>
+                                    <li id="home_li"><a href="{% url 'home' %}" style="font-family: 'Noto Sans KR', sans-serif;">Home</a></li>
+                                    <li id="tellme_li"><a href="{% url 'jinxjinx:category' %}" style="font-family: 'Noto Sans KR', sans-serif;">Tell Me</a></li>
+                                    <li id="jinxbox_li"><a href="{% url 'jinxjinx:jinxbox_list' %}" style="font-family: 'Noto Sans KR', sans-serif;">Jinx Box</a></li>
+                                    <li id="share_li"><a href="{% url 'jinxjinx:sentence_list' %}" style="font-family: 'Noto Sans KR', sans-serif;">Share</a></li>
                                     <li class="dropdown nav-toggle">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <i class="fas fa-user-circle fa-2x"></i>

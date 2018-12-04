@@ -12,8 +12,7 @@
 					<div class="section-heading text-center">
 					    <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Tell Me</div>
 					    <p></p>
-					    <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">Tell me 그대의 징크스! 아래 선택지를 통해 징크스 문장을 만들어보셔요!</div>
-
+					    <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">Tell me 그대의 징크스!</div>
 					</div>
 				</div>
 			</div>
@@ -23,7 +22,8 @@
                     <div class="col-md-10"></div>
                     <div class="col-md-8 ">
 
-                        <h6>보기를 선택하여 원인/결과 생성</h6>
+                        <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:110%;">아래 선택지를 통해 징크스 문장을 만들어보셔요.</div>
+                        <p></p>
             
                         <select id='category_select' name="category" onchange="changeCate()"  style="height: 32px;">
                             <option class="category_start" selected="selected">카테고리</option>
@@ -211,7 +211,10 @@
         
     }
     
-    
+    function navAddClass(){
+        $('#tellme_li').addClass('active')
+    }
+
     
 </script>
 {%endblock%}

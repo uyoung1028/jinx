@@ -106,12 +106,12 @@ class SentenceCreate(LoginRequiredMixin, CreateView):
                 print("사용자가 있는문장 등록")
                 # 사용자가 이미 등록해놓은 문장이 있으면 그 문장으로 가야됨
                 sentences[0].update_count()
-                return redirect(resolve_url('home'))  # 나중에는 디테일페이지로
+                return redirect(resolve_url('jinxjinx:jinxbox_list'))  # 나중에는 디테일페이지로
             else:
                 #이미 등록해놓은 문장이 있으면 usersentence에 저장하고 그 문장으로 이동
                 usersentence = UserSentence.objects.create(user=self.request.user, sentence=sentences[0])
                 sentences[0].update_count()
-                return redirect(resolve_url('home'))
+                return redirect(resolve_url('jinxjinx:jinxbox_list'))
         else:
             print("없음")
             # self.object = form.save(commit=False)

@@ -41,8 +41,8 @@ tr:nth-child(even) {
                 <div style="color:black; font-family: 'Noto Sans JP', sans-serif; font-size:300%;">Jinx Box</div>
                 <p></p>
                 <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">나의 징크스 수집 박스!</div>
-                <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">해당 징크스가 일어난 날, 그날의 감정, 그리고 결과를 입력해보아요</div>
-                <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:120%;">징크스 번호를 클릭하면 상세 내용을 살필 수 있습니다</div>
+                <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:110%;">해당 징크스가 일어난 날, 그때의 감정, 그리고 결과를 입력해보셔요.</div>
+                <div style="color:black; font-family: 'Noto Sans KR', sans-serif; font-size:110%;">번호를 클릭하면 그간 저장한 결과를 확인할 수 있습니다.</div>
                 <p></p>
             </div>
         <div>
@@ -135,6 +135,10 @@ tr:nth-child(even) {
           
           
         <!--{%endfor%}-->
-
+    <script type="text/javascript">
+        function navAddClass(){
+        $('#jinxbox_li').addClass('active')
+    }
+    </script>
     {%endblock%}
 </div>

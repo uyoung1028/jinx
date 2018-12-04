@@ -25,4 +25,7 @@
  background-position: 25%;
 }
 
- 
+.navbar-custom ul.nav li.active a {
+    font-size: 18px;
+    color: black;
+}
